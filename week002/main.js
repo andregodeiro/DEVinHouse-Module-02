@@ -9,6 +9,18 @@ const pizzas = [
   { id: "", pizzaName: "", description: "", price: "", ingredients: "" },
 ];
 
+const orders = [
+  {
+    clientName: "",
+    cpf: "",
+    address: "",
+    phone: "",
+    payment: "",
+    observation: "",
+    order: "",
+  },
+];
+
 //Requests
 app.get("/", (req, res) => {
   res.send("<h1>Pizzaria Divina Pizza</h1>");
@@ -32,6 +44,30 @@ app.post("/pizzas", (req, res) => {
   pizzas.push(newPizza);
 
   res.status(201, "O objeto da pizaz criada").json(newPizza);
+});
+
+app.post("/solicitations", (req, res) => {
+  const { clientName, cpf, address, phone, payment, observation, order } =
+    req.body;
+
+  const newOrder = {
+    clientName,
+    cpf,
+    address,
+    phone,
+    payment,
+    observation,
+    order,
+  };
+
+  orders.push(newOrder);
+
+  res.status(202, "O objeto do pedido criado").json(newOrder);
+});
+
+app.get("/solicitations", (req, res) => {
+  res.send(orders);
+  res.status(200);
 });
 
 //Port
