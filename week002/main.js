@@ -1,4 +1,6 @@
+const { response } = require("express");
 const express = require("express");
+const { request } = require("http");
 const app = express();
 const { v4: uuidv4 } = require("uuid"); // Set ID
 
@@ -47,17 +49,26 @@ app.post("/pizzas", (req, res) => {
 });
 
 app.post("/solicitations", (req, res) => {
-  const { clientName, cpf, address, phone, payment, observation, order } =
-    req.body;
-
-  const newOrder = {
+  const {
+    id,
     clientName,
     cpf,
     address,
     phone,
     payment,
     observation,
-    order,
+    orderDescription,
+  } = req.body;
+
+  const newOrder = {
+    id: uuidv4(),
+    clientName,
+    cpf,
+    address,
+    phone,
+    payment,
+    observation,
+    orderDescription,
   };
 
   orders.push(newOrder);
@@ -68,6 +79,15 @@ app.post("/solicitations", (req, res) => {
 app.get("/solicitations", (req, res) => {
   res.send(orders);
   res.status(200);
+});
+
+app.get("/solicitations/:id", (req, res) => {
+  const filteredOrder = orders.find((order) => order.id === req.params.id);
+
+  if (!filteredOrder) {
+    return res.status(404).json({ error: "Pedido não encontrado!" });
+  }
+  return res.json(filteredOrder);
 });
 
 //Port
