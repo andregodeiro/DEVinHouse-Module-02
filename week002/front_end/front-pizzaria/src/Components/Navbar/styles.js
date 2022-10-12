@@ -35,10 +35,13 @@ export const MenuList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 `;
 
 export const MenuItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 24px;
   cursor: pointer;
 `;

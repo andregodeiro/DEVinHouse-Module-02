@@ -8,6 +8,8 @@ import {
   MenuList,
   NavbarContainer,
 } from "./styles";
+import { BsPencilSquare } from "react-icons/bs";
+import { BiBell, BiHistory, BiRestaurant } from "react-icons/bi";
 
 export const Navbar = () => {
   return (
@@ -18,10 +20,23 @@ export const Navbar = () => {
           <LogoText>Hello, pizza!</LogoText>
         </LogoContainer>
         <MenuList>
-          <MenuItem>Novo Pedido</MenuItem>
-          <MenuItem>Pedidos</MenuItem>
-          <MenuItem>Histórico</MenuItem>
-          <MenuItem>Menu</MenuItem>
+          <MenuItem>
+            <BsPencilSquare />
+            Novo Pedido
+          </MenuItem>
+          <MenuItem>
+            <BiBell />
+            Pedidos
+          </MenuItem>
+          <MenuItem>
+            {" "}
+            <BiHistory />
+            Histórico
+          </MenuItem>
+          <MenuItem>
+            <BiRestaurant />
+            Menu
+          </MenuItem>
         </MenuList>
         <FooterContainer>
           <FooterText>
